@@ -17,8 +17,8 @@ public class MemoRepository {
         em.persist(memo);
     }
 
-    public Long findOne(Memo memo) {
-        return memo.getId();
+    public Memo findOne(Long id) {
+        return em.find(Memo.class, id);
     }
 
     public List<Memo> findAll() {
@@ -26,8 +26,9 @@ public class MemoRepository {
                 .getResultList();
     }
 
+    //검색 로직
     public List<Memo> findSearch(String keyWord) {
-        return em.createQuery("SELECT M FROM Memo AS M WHERE M.content LIKE :keyWord", Memo.class)
+        return em.createQuery("SELECT M FROM Memo AS M WHERE M.title LIKE :keyWord", Memo.class)
                 .setParameter("keyWord", "%" + keyWord + "%")
                 .getResultList();
     }
