@@ -3,6 +3,7 @@ package com.spring.Memo.domain;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.validation.constraints.NotNull;
 import javax.persistence.Column;
@@ -19,8 +20,10 @@ public class Memo {
     @Column(name = "memo_id")
     private Long id;
 
-    @NotNull private String title;
-    @NotNull private String content;
+    @NotNull @Setter
+    private String title;
+    @NotNull @Setter
+    private String content;
 
     @NotNull
     private final LocalDateTime createDate = LocalDateTime.now();
@@ -34,4 +37,5 @@ public class Memo {
     public static Memo createMemo(String title, String content) {
         return new Memo(title, content);
     }
+
 }
