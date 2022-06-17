@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
@@ -15,13 +17,19 @@ public class MemoService {
 
     @Transactional
     public Long save(Memo memo) {
-        overlapCheck(memo);
         memoRepository.save(memo);
         return memo.getId();
     }
 
-    //중복체크
-    private void overlapCheck(Memo memo) {
+    public Memo findOne(Long id) {
+        return memoRepository.findOne(id);
+    }
 
+    public List<Memo> findAll() {
+        return memoRepository.findAll();
+    }
+
+    public List<Memo> findSearch(String title) {
+        return memoRepository.findSearch(title);
     }
 }
