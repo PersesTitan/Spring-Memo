@@ -29,7 +29,9 @@ public class MemoService {
         return memoRepository.findAll();
     }
 
-    public List<Memo> findSearch(String title) {
-        return memoRepository.findSearch(title);
+    //검색 로직
+    public List<Memo> findSearch(String keyWord) {
+        if (keyWord.isEmpty()) return memoRepository.findAll();
+        else return memoRepository.findSearch(keyWord);
     }
 }
