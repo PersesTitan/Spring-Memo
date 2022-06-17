@@ -13,8 +13,20 @@ public class MemoRepository {
 
     private final EntityManager em;
 
+    //저장
     public void save(Memo memo) {
         em.persist(memo);
+    }
+
+    //삭제
+    public void remove(Memo memo) {
+        em.remove(memo);
+    }
+
+    //정보 업데이트
+    public void update(Memo memo, String title, String content) {
+        memo.setTitle(title);
+        memo.setContent(content);
     }
 
     public Memo findOne(Long id) {
