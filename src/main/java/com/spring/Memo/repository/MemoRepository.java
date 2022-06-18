@@ -1,6 +1,7 @@
 package com.spring.Memo.repository;
 
 import com.spring.Memo.domain.Memo;
+import com.spring.Memo.domain.MemoDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -24,7 +25,9 @@ public class MemoRepository {
     }
 
     //정보 업데이트
-    public void update(Memo memo, String title, String content) {
+    public void update(Memo memo, MemoDTO memoDTO) {
+        String title = memoDTO.title();
+        String content = memoDTO.content();
         memo.setTitle(title);
         memo.setContent(content);
     }
