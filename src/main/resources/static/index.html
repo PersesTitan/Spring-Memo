@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+</head>
+<body>
+    <h2>메모</h2>
+
+    <table>
+        <thead>
+        <tr>
+            <th>번호</th>
+            <th>제목</th>
+            <th>작성일</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="memo:${memos}">
+            <td th:text="${memo.title}">t</td>
+            <td th:text="${memo.content}">c</td>
+        </tr>
+        </tbody>
+    </table>
+</body>
+</html>
