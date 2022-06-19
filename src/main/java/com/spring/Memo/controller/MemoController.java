@@ -53,8 +53,10 @@ public class MemoController {
     @GetMapping("memo/{id}")
     public String memo(@PathVariable Long id, Model model) {
         Memo memo = memoService.findOne(id);
-        model.addAttribute("title", memo.getTitle());
-        model.addAttribute("content", memo.getContent());
+        model.addAttribute("memo", memo);
+//        model.addAttribute("id", id);
+//        model.addAttribute("title", memo.getTitle());
+//        model.addAttribute("content", memo.getContent());
         return "item/memo";
     }
 
