@@ -29,12 +29,13 @@ public class MemoController {
         return "memo_list";
     }
 
-    //메모 생성
+    //메모 생성 요청
     @GetMapping("/memo")
     public String createForm() {
         return "new_memo";
     }
 
+    //메모 생성
     @PostMapping("/memo")
     public String createMemo(Memo memo, RedirectAttributes redirectAttributes) {
         Long id = memoService.save(memo);

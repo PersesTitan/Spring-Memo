@@ -1,7 +1,6 @@
 package com.spring.Memo.service;
 
 import com.spring.Memo.domain.Memo;
-import com.spring.Memo.domain.MemoDTO;
 import com.spring.Memo.repository.MemoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
