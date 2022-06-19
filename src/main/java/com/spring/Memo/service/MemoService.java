@@ -36,6 +36,7 @@ public class MemoService {
         return memoRepository.findAll();
     }
 
+    @Transactional
     public void remove(Long id) {
         Memo memo = memoRepository.findOne(id);
         memoRepository.remove(memo);
