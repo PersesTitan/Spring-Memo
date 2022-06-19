@@ -13,10 +13,14 @@
     <textarea cols="30" rows="10" th:text="${memo.content}" readonly></textarea>
     <br>
     <button onclick="location.href='/edit_memo.html'"
-            th:onclick="|location.href='@{/edit/{id}(id=${memo.id})}'|">수정</button>
+            th:onclick="|location.href='@{/memo/{id}/edit(id=${memo.id})}'|">수정</button>
 
     <button onclick="location.href='memo_list.html'"
-            th:onclick="|location.href='@{/list}'|"
+            th:onclick="|location.href='@{/memos}'|"
             type="button">목록으로</button>
+
+    <form th:action="'/memo/'+${id}+'/remove'" method="post">
+        <button type="submit">삭제</button>
+    </form>
 </body>
 </html>
