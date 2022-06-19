@@ -23,9 +23,9 @@ public class MemoService {
     }
 
     @Transactional
-    public void update(Long id, MemoDTO memoDTO) {
+    public void update(Long id, String title, String content) {
         Memo memo = memoRepository.findOne(id);
-        memoRepository.update(memo, memoDTO);
+        memoRepository.update(memo, title, content);
     }
 
     public Memo findOne(Long id) {
