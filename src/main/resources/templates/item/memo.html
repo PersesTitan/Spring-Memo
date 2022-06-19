@@ -8,13 +8,15 @@
     <h1 th:if="${param.create}" th:text="'메모 추가 성공'"></h1>
 
     <h2>제목</h2>
-    <input type="text" th:value="${title}" readonly>
+    <input type="text" th:value="${memo.title}" readonly>
     <h2>내용</h2>
-    <textarea cols="30" rows="10" th:text="${content}" readonly></textarea>
+    <textarea cols="30" rows="10" th:text="${memo.content}" readonly></textarea>
     <br>
-    <button>수정</button>
+    <button onclick="location.href='/edit_memo.html'"
+            th:onclick="|location.href='@{/edit/{id}(id=${memo.id})}'|">수정</button>
+
     <button onclick="location.href='memo_list.html'"
             th:onclick="|location.href='@{/list}'|"
-            type="button">목록</button>
+            type="button">목록으로</button>
 </body>
 </html>
