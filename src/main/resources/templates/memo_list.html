@@ -24,6 +24,9 @@
 
 <h1>메모 리스트</h1>
 <label th:if="${searchParam}" th:text="|검색 결과: ${search}|"></label>
+<p>
+    자세히 보실려면 글짜를 클릭해주세요.
+</p>
     <table>
         <thead>
         <tr>
@@ -34,9 +37,15 @@
         </thead>
         <tbody>
         <tr th:each="memo:${memos}">
-            <td th:text="${memo.id}"></td>
-            <td th:text="${memo.title}"></td>
-            <td th:text="${#temporals.format(memo.createDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+            <td th:text="${memo.id}"
+                onclick="location.href='item/memo.html'"
+                th:onclick="|location.href='@{/memo/{id}(id=${memo.id})}'|"></td>
+            <td th:text="${memo.title}"
+                onclick="location.href='item/memo.html'"
+                th:onclick="|location.href='@{/memo/{id}(id=${memo.id})}'|"></td>
+            <td th:text="${#temporals.format(memo.createDate, 'yyyy-MM-dd HH:mm:ss')}"
+                onclick="location.href='item/memo.html'"
+                th:onclick="|location.href='@{/memo/{id}(id=${memo.id})}'|"></td>
         </tr>
         </tbody>
     </table>
