@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "spring.thymeleaf.order",
+      "type": "java.lang.String",
+      "description": "Description for spring.thymeleaf.order."
+  }
+] }
