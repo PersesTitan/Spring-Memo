@@ -19,7 +19,7 @@
             th:onclick="|location.href='@{/memos}'|"
             type="button">목록으로</button>
 
-    <form th:action="'/memo/'+${id}+'/remove'" method="post">
+    <form th:action="'/memo/'+${id}+'/remove'" method="post" style="display: inline">
         <button type="submit">삭제</button>
     </form>
 </body>
