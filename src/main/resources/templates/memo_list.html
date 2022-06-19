@@ -3,9 +3,21 @@
 <head>
     <title>메모 생성</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <style>
+        table, td, th {
+            border: 1px solid black;
+            border-collapse: collapse;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-<h1>메모 생성</h1>
+<button onclick="location.href='new_memo.html'"
+        th:onclick="|location.href='add'|"
+        type="button">생성</button>
+
+<h1>메모 리스트</h1>
     <table>
         <thead>
         <tr>
@@ -16,7 +28,7 @@
         </thead>
         <tbody>
         <tr th:each="memo:${memos}">
-            <td th:href="${memo.id}"></td>
+            <td th:text="${memo.id}"></td>
             <td th:text="${memo.title}"></td>
             <td th:text="${#temporals.format(memo.createDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
         </tr>
