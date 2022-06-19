@@ -16,8 +16,14 @@
 <button onclick="location.href='new_memo.html'"
         th:onclick="|location.href='add'|"
         type="button">생성</button>
+<br><br>
+
+<form action="./list" method="get">
+    <input type="text" name="search"><input type="submit" value="검색">
+</form>
 
 <h1>메모 리스트</h1>
+<label th:if="${searchParam}" th:text="|검색 결과: ${search}|"></label>
     <table>
         <thead>
         <tr>
