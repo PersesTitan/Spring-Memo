@@ -11,5 +11,13 @@
     <input>
 
     <button>완료</button>
+
+    <button onclick="location.href='memo_list.html'"
+            th:onclick="|location.href='@{/list}'|"
+            type="button">목록으로</button>
+
+    <button onclick="location.href='item/memo.html'"
+            th:onclick="|location.href='@{memo/{id}(id=${id})}'|"
+            type="button">취소</button>
 </body>
 </html>
