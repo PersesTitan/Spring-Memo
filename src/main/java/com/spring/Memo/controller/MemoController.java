@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
@@ -24,9 +25,12 @@ public class MemoController {
         return "redirect:/list";
     }
 
-    @RequestMapping({"list", "memo_list", "memo_list.html"})
-    public String memoList(Model model) {
-        List<Memo> memos = memoService.findAll();
+    @RequestMapping(value = {"list", "memo_list", "memo_list.html"}, method = RequestMethod.GET)
+    public String memoList(Model model, HttpServletRequest httpServletRequest) {
+        String search = httpServletRequest.getParameter("search");
+        List<Memo> memos = memoService.findSearch(search);
+        model.addAttribute("searchParam", !(search == null || search.isBlank()));
+        model.addAttribute("search", search);
         model.addAttribute("memos", memos);
         return "memo_list";
     }
