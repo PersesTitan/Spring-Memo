@@ -25,9 +25,7 @@ public class MemoRepository {
     }
 
     //정보 업데이트
-    public void update(Memo memo, MemoDTO memoDTO) {
-        String title = memoDTO.title();
-        String content = memoDTO.content();
+    public void update(Memo memo, String title, String content) {
         memo.setTitle(title);
         memo.setContent(content);
     }
