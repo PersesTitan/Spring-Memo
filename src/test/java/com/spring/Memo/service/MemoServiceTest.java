@@ -1,7 +1,6 @@
 package com.spring.Memo.service;
 
 import com.spring.Memo.domain.Memo;
-import com.spring.Memo.domain.MemoDTO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
