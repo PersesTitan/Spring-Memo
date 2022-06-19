@@ -5,11 +5,20 @@
     <title>Title</title>
 </head>
 <body>
-
-    <label for="title">제목</label>
-    <input type="text" id="title" name="title" th:value="${memo.title}">
-
-    <label for="content">내용</label>
-    <input type="text" id="content" name="content" th:value="${memo.content}">
+<table>
+    <thead>
+    <tr>
+        <th>번호</th>
+        <th>제목</th>
+        <th>작성일</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="memo:${memos}">
+        <td th:text="${memo.title}"></td>
+        <td th:text="${memo.content}"></td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>
