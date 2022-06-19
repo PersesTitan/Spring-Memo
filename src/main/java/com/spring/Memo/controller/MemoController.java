@@ -19,13 +19,7 @@ public class MemoController {
 
     private final MemoService memoService;
 
-    //메인 페이지
-    @RequestMapping({"/", "","index", "index.html"})
-    public String mainPage() {
-        return "redirect:/list";
-    }
-
-    @RequestMapping(value = {"list", "memo_list", "memo_list.html"}, method = RequestMethod.GET)
+    @GetMapping("/memos")
     public String memoList(Model model, HttpServletRequest httpServletRequest) {
         String search = httpServletRequest.getParameter("search");
         List<Memo> memos = memoService.findSearch(search);
@@ -36,12 +30,12 @@ public class MemoController {
     }
 
     //메모 생성
-    @GetMapping("add")
+    @GetMapping("/memo")
     public String createForm() {
         return "new_memo";
     }
 
-    @PostMapping("add")
+    @PostMapping("/memo")
     public String createMemo(Memo memo, RedirectAttributes redirectAttributes) {
         Long id = memoService.save(memo);
         redirectAttributes.addAttribute("id", id);
@@ -49,36 +43,36 @@ public class MemoController {
         return "redirect:/memo/{id}";
     }
 
-    //수정 로직
-    @GetMapping("memo/{id}")
+    //상세 로직
+    @GetMapping("/memo/{id}")
     public String memo(@PathVariable Long id, Model model) {
         Memo memo = memoService.findOne(id);
+        model.addAttribute("id", id);
         model.addAttribute("memo", memo);
-//        model.addAttribute("id", id);
-//        model.addAttribute("title", memo.getTitle());
-//        model.addAttribute("content", memo.getContent());
         return "item/memo";
     }
 
-    //삭제 로직
-    @DeleteMapping("memo/{id}")
-    public Long remove(@PathVariable Long id) {
-        memoService.remove(id);
-        return id;
-    }
-
-    //수정 로직
-    @GetMapping("edit/{id}")
+    //수정 화면
+    @GetMapping("/memo/{id}/edit")
     public String editFrom(@PathVariable Long id, Model model) {
         Memo memo = memoService.findOne(id);
+        model.addAttribute("id", id);
         model.addAttribute("memo", memo);
         return "edit_memo";
     }
 
-    @PostMapping("edit/{id}")
-    public String edit(@PathVariable Long id, @ModelAttribute MemoDTO memoDTO) {
+    //수정 로직
+    @PostMapping("/memo/{id}/edit")
+    public String edit(@PathVariable Long id, MemoDTO memoDTO) {
         memoService.update(id, memoDTO.title(), memoDTO.content());
         return "redirect:/memo/{id}";
+    }
+
+    //삭제 로직
+    @PostMapping("/memo/{id}/remove")
+    public String remove(@PathVariable Long id) {
+        memoService.remove(id);
+        return "redirect:/memos";
     }
 
     //테스트용 생성 로직
