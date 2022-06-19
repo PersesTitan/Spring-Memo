@@ -17,15 +17,30 @@ public class MemoController {
 
     private final MemoService memoService;
 
-    @GetMapping("index")
+    @RequestMapping("index")
+    public String mainPage(Model model) {
+        List<Memo> memos = memoService.findAll();
+        memos.add(Memo.createMemo("a", "A"));
+        memos.add(Memo.createMemo("b", "B"));
+        model.addAttribute("memos", memos);
+        return "index";
+    }
+
+    @RequestMapping("list")
     public String memoList(Model model) {
         List<Memo> memos = memoService.findAll();
-
-        memos.add(Memo.createMemo("a", "b"));
-        memos.add(Memo.createMemo("a", "b"));
-        System.out.println(memos);
+        memos.add(Memo.createMemo("a", "A"));
+        memos.add(Memo.createMemo("b", "B"));
         model.addAttribute("memos", memos);
-        return "/";
+        return "memo_list";
+    }
+
+    @RequestMapping("create")
+    public String create(Model model, MemoDTO memoDTO) {
+        model.getAttribute("");
+        Memo memo = Memo.createMemo(memoDTO.title(), memoDTO.content());
+
+        return "new_list";
     }
 
 //    @GetMapping("save")
@@ -41,5 +56,17 @@ public class MemoController {
         Memo memo = memoService.findOne(id);
         model.addAttribute("id", memo);
         return "item/memo";
+    }
+
+    @DeleteMapping("memo/{id}")
+    public Long remove(@PathVariable Long id) {
+        memoService.remove(id);
+        return id;
+    }
+
+    @PutMapping("memo/{id}")
+    public Long update(@PathVariable Long id, @RequestBody MemoDTO memoDTO) {
+        memoService.update(id, memoDTO.title(), memoDTO.content());
+        return id;
     }
 }
