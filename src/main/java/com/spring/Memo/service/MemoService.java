@@ -43,7 +43,7 @@ public class MemoService {
 
     //검색 로직
     public List<Memo> findSearch(String keyWord) {
-        if (keyWord.isEmpty()) return memoRepository.findAll();
+        if (keyWord == null || keyWord.isEmpty()) return memoRepository.findAll();
         else return memoRepository.findSearch(keyWord);
     }
 }
